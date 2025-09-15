@@ -1,0 +1,33 @@
+# Compiled binaries
+test_handtracking_only
+
+# Build artifacts
+build/
+*.o
+*.so
+*.a
+
+# Log files
+log.txt
+*.log
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
