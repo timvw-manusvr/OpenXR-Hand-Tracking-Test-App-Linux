@@ -18,7 +18,7 @@ A standalone OpenXR hand tracking application that works with Manus gloves witho
 - `APILAYER/` - Manus OpenXR API layer libraries
   - `libXR_APILAYER_MANUS_handtracking.so` - Main API layer
   - `libManusSDK.so` - Manus SDK library
-  - `XR_APILAYER_MANUS_handtracking.json` - API layer manifest
+  - `XR_APILAYER_MANUS_handtracking_Linux.json` - API layer manifest
 
 ## Requirements
 
@@ -35,11 +35,19 @@ A standalone OpenXR hand tracking application that works with Manus gloves witho
 
 ## Running
 
+### Option 1: Explicit API Layer (Portable)
 ```bash
 ./test_handtracking_only.sh
 ```
 
-Or run directly:
+### Option 2: Implicit API Layer (System Installation)
+
+First install the API layer to the system:
+```bash
+# System-wide installation (requires sudo)
+./install_implicit.sh
+
+# run directly without any environment setup:
 ```bash
 ./test_handtracking_only
 ```
@@ -74,13 +82,20 @@ The application will:
 4. Provide real-time hand tracking data
 5. Log hand joint positions and orientations
 
-## Environment Variables
+## API Layer Installation Methods
 
-The test script sets up the following environment variables:
-- `XR_API_LAYER_PATH` - Points to the APILAYER folder
-- `XR_ENABLE_API_LAYERS` - Enables the Manus hand tracking layer
-- `LD_LIBRARY_PATH` - Includes the APILAYER folder for library loading
-- `XR_RUNTIME_JSON` - Points to SteamVR runtime
+### Explicit API Layers (Current Default)
+- **Portable**: Works from any directory without system installation
+- **Environment Variables**: Requires setting `XR_API_LAYER_PATH` and `XR_ENABLE_API_LAYERS`
+- **Use Case**: Development, testing, isolated deployments
+
+### Implicit API Layers (Alternative)
+- **System Integration**: Automatically discovered by OpenXR loader
+- **No Environment Setup**: Just run the application directly
+- **Standard Locations**:
+  - System-wide: `/usr/share/openxr/1/api_layers/`
+  - User-specific: `~/.local/share/openxr/1/api_layers/`
+- **Use Case**: Production deployments, system-wide availability
 
 ## Troubleshooting
 
